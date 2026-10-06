@@ -8,7 +8,10 @@ class StartScreen extends StatelessWidget {
     return Center(
       child: Column(mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset('assets/images/quiz-logo.png'),
+
+        Image.asset('assets/images/quiz-logo.png',
+        width: 300,
+        color: const Color.fromARGB(255, 233, 230, 230)),
         const SizedBox(height: 20),
         const Text(
           "Take the quiz and challenge your knowledge",
@@ -19,11 +22,12 @@ class StartScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        OutlinedButton(
+        OutlinedButton.icon(
           onPressed: () {},
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white),
-          child: const Text("Start Quiz"),
+          icon:Icon(Icons.arrow_right_alt_rounded),
+          label: const Text("Start Quiz"),
         ),
       ]
       )
