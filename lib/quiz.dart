@@ -16,16 +16,25 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   Widget? activeScreen;
 
-   List<String> selectedAnswers = [];
+  final List<String> selectedAnswers = [];
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
-    if(selectedAnswers.length == questions.length) {
-      selectedAnswers = [];
+    if (selectedAnswers.length == questions.length) {
       setState(() {
-        activeScreen = ResultsScreen(chosenAnswers: selectedAnswers);
+        activeScreen = ResultsScreen(
+          chosenAnswers: List.unmodifiable(selectedAnswers),
+          onRestart: restartQuiz,
+        );
       });
     }
+  }
+
+  void restartQuiz() {
+    setState(() {
+      selectedAnswers.clear();
+      activeScreen = StartScreen(switchScreen);
+    });
   }
 
   void switchScreen() {
